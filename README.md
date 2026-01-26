@@ -2,8 +2,9 @@
 Junpa is originally from nickname for Johnny at home which is named by Father. This app is streaming video based on google drive.
 
 # Why we decided to start this project?
-Just dreammed to provide a platform where everybody can stream their own story with no additional burden during the conversation between Johnny and Chun.
+Just dreammed to create a platform where everybody can stream their own story with minimized financial burden during the conversation between Johnny and Chun.
 Google Drive was thought to be used to use streaming storage and HTTP-based adaptive streaming source.
+Regarding account management, Google Account solved all other painful development, so we can just focus on the development.
 
 # Service Components
 This app is composed of three parts
