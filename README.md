@@ -13,8 +13,8 @@ This app is composed of three parts
 
 # Video Stream
 We will have two different video streams
-- On Demand Stream
-- Live Playlist
+- On Demand Stream - pointing to the video assets we created
+- Live Playlist - video playlist based on multiple set of "On Demand Stream" which has start_at as the beginning of stream. "Live Playlist" will work like Live TV.
 
 # Admin Web
 - In order to access, user have to sign-in Google Account for accessing Google Drive
@@ -24,8 +24,8 @@ We will have two different video streams
 - User can select video content from Google Photo or upload the video directly.
 - Each video content should have its title name. The filename can be used as video title in default.
 - We can build playlist based on video library.
-- Each playlist has its own starting time (start_at).
-- We can pick specific "On Demand Stream" or "Live Playlist" as featured content
+- Each playlist has its own starting time (start_at) and created time (created_at).
+- We can pick specific "On Demand Stream" or "Live Playlist" as featured content.
 
 # Streamer
 - Each user will have its own service URL based in Google Account - it can be based in user email address
