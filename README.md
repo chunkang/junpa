@@ -38,5 +38,5 @@ We will have two different video streams
 
 # Frontend web
 The Frontend web is what the user will be faced.
-- Show the list of the registered video assets
+- Show the list of the registered video assets.
 - Show the live channels that is created as playlist.
