@@ -1,10 +1,12 @@
 # What is junpa?
-Junpa is originally from nickname for Johnny at home which is named by Father. This app is streaming video based on google drive.
+- Junpa is originally from friendly nickname for Johnny at home which is named by Father. This app is streaming video based on google drive.
+- In Sanskrit, the word Jhanpa (झम्प) is a technical term found in ancient texts - meaning jump, spring, or plunge into water.
+- In Modern Context: It is the root for various words in modern Indo-Aryan languages that describe the physical act of jumping.
 
 # Why do we decided to start this project?
-Just dreammed to create a platform where everybody can stream their own story with minimized financial burden during the conversation between Johnny and Chun.
-Google Drive was thought to be used to use streaming storage and HTTP-based adaptive streaming source.
-Regarding account management, Google Account solved all other painful development, so we can just focus on the development.
+- Just dreammed to create a platform where everybody can stream their own story with minimized financial burden during the conversation between Johnny and Chun.
+- Google Drive was thought to be used to use streaming storage and HTTP-based adaptive streaming source.
+- Regarding account management, Google Account solved all other painful development, so we can just focus on the development.
 
 # Service Components
 This app is composed of three parts
