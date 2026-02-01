@@ -40,3 +40,15 @@ We will have two different video streams
 The Frontend web is what the user will be faced.
 - Show the list of the registered video assets.
 - Show the live channels that is created as playlist.
+
+# Content Metadata Extension
+- Each video can include optional tags for categorization.
+- Videos can belong to a series for sequential playback.
+
+# Series
+- A series groups multiple On Demand Streams.
+- Videos in a series are ordered manually or by created time.
+- Auto-play next video when current video ends.
+
+# Reactions
+- Videos can receive simple reactions (no comments).
