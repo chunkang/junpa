@@ -1,0 +1,34 @@
+# Junpa Development Environment
+# Docker Compose configuration for local development
+
+services:
+  dev:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    container_name: junpa-dev
+    volumes:
+      # Mount project directory
+      - .:/workspace
+      # Persist npm cache
+      - npm-cache:/root/.npm
+      # Persist uv cache
+      - uv-cache:/root/.cache/uv
+    working_dir: /workspace
+    stdin_open: true
+    tty: true
+    environment:
+      - NODE_ENV=development
+      - PYTHONPATH=/workspace
+    ports:
+      # FastAPI (Streamer)
+      - "8000:8000"
+      # Next.js (Admin Web)
+      - "3000:3000"
+      # Next.js (Frontend Web)
+      - "3001:3001"
+    command: /bin/bash
+
+volumes:
+  npm-cache:
+  uv-cache:
