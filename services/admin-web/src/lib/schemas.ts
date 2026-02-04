@@ -83,6 +83,8 @@ export type Playlist = z.infer<typeof playlistSchema>
 export type Series = z.infer<typeof seriesSchema>
 export type FeaturedConfig = z.infer<typeof featuredConfigSchema>
 export type FeaturedItem = z.infer<typeof featuredItemSchema>
+export type PlaylistItem = z.infer<typeof playlistItemSchema>
+export type SeriesEpisode = z.infer<typeof seriesEpisodeSchema>
 
 export function createEmptyLibrary(): JunpaLibrary {
   return {
