@@ -19,14 +19,20 @@ export function SearchBar() {
   const containerRef = useRef<HTMLDivElement>(null)
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
 
+  function handleQueryChange(value: string) {
+    setQuery(value)
+    if (value.trim().length < 2) {
+      setResults(null)
+      setIsOpen(false)
+    }
+  }
+
   useEffect(() => {
     if (timerRef.current) {
       clearTimeout(timerRef.current)
     }
 
     if (query.trim().length < 2) {
-      setResults(null)
-      setIsOpen(false)
       return
     }
 
@@ -80,7 +86,7 @@ export function SearchBar() {
         <input
           type="text"
           value={query}
-          onChange={(e) => setQuery(e.target.value)}
+          onChange={(e) => handleQueryChange(e.target.value)}
           onFocus={() => {
             if (results) setIsOpen(true)
           }}

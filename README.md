@@ -30,6 +30,30 @@ We will have two different video streams
 - Each playlist has its own starting time (start_at) and created time (created_at).
 - We can pick specific "On Demand Stream" or "Live Playlist" as featured content.
 
+## Admin Web - Implementation Status
+
+The Admin Web content management interface has been fully implemented with:
+
+### Features
+- **Authentication**: Google OAuth 2.0 sign-in with automatic token refresh
+- **Video Library**: Responsive grid with search, metadata editing, and deletion
+- **Video Upload**: Drag-and-drop upload with progress tracking, Google Photos integration (planned)
+- **Playlist Management**: Create, edit, reorder videos with drag-and-drop, ISO 8601 start times, loop mode
+- **Series Management**: Episode ordering, auto-play, chronological auto-ordering
+- **Featured Content**: Curate up to 10 featured items with priority ordering
+- **Full-text Search**: Search across videos, playlists, and series
+- **Offline Support**: Local change queue with sync-on-reconnect
+- **Conflict Resolution**: Detect and resolve concurrent edit conflicts
+
+### Tech Stack
+- Next.js 16 (App Router) with React 19
+- TypeScript (strict mode)
+- Tailwind CSS v4
+- Auth.js v5 (Google OAuth)
+- Google Drive API v3
+- Zustand (client state) + Zod (validation)
+- Vitest + React Testing Library (210 tests)
+
 # Streamer
 - Each user will have its own service URL based in Google Account - it can be based in user email address
 - Streamer is for supporting the live playlist we created in admin web.

@@ -1,7 +1,7 @@
 ---
 id: SPEC-ADMIN-001
-version: "1.0.0"
-status: "draft"
+version: "1.1.0"
+status: "completed"
 created: "2026-02-03"
 updated: "2026-02-03"
 author: "Chun Kang"

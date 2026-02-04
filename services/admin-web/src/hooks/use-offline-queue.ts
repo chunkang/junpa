@@ -5,12 +5,12 @@ import { OfflineQueue, type QueuedChange } from '@/lib/google/offline-queue'
 
 export function useOfflineQueue() {
   const queueRef = useRef<OfflineQueue>(new OfflineQueue())
-  const [isOnline, setIsOnline] = useState(true)
+  const [isOnline, setIsOnline] = useState(() =>
+    typeof navigator !== 'undefined' ? navigator.onLine : true
+  )
   const [queueLength, setQueueLength] = useState(0)
 
   useEffect(() => {
-    setIsOnline(navigator.onLine)
-
     const handleOnline = () => setIsOnline(true)
     const handleOffline = () => setIsOnline(false)
 
