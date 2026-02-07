@@ -1,0 +1,54 @@
+# Junpa Development Environment
+# Multi-language container with LSP servers and development tools
+
+FROM ubuntu:24.04
+
+# Prevent interactive prompts during package installation
+ENV DEBIAN_FRONTEND=noninteractive
+ENV PYTHONDONTWRITEBYTECODE=1
+ENV PYTHONUNBUFFERED=1
+
+# Install system dependencies
+RUN apt-get update && apt-get install -y \
+    curl \
+    git \
+    build-essential \
+    python3 \
+    python3-pip \
+    python3-venv \
+    && rm -rf /var/lib/apt/lists/*
+
+# Install Node.js 22 LTS
+RUN curl -fsSL https://deb.nodesource.com/setup_22.x | bash - \
+    && apt-get install -y nodejs \
+    && rm -rf /var/lib/apt/lists/*
+
+# Install uv (modern Python package manager)
+RUN curl -LsSf https://astral.sh/uv/install.sh | sh
+ENV PATH="/root/.local/bin:$PATH"
+
+# Install Python LSP servers
+RUN pip3 install --break-system-packages \
+    pyright \
+    python-lsp-server \
+    ruff \
+    mypy \
+    pytest \
+    pytest-cov
+
+# Install TypeScript and LSP server
+RUN npm install -g \
+    typescript \
+    typescript-language-server \
+    eslint \
+    prettier \
+    @biomejs/biome
+
+# Install ast-grep for code analysis
+RUN npm install -g @ast-grep/cli
+
+# Create workspace directory
+WORKDIR /workspace
+
+# Default command
+CMD ["/bin/bash"]
