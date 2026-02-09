@@ -15,6 +15,13 @@ interface DriveFile {
   };
 }
 
+export class SessionExpiredError extends Error {
+  constructor(message: string = "Session has expired. Please sign in again.") {
+    super(message);
+    this.name = "SessionExpiredError";
+  }
+}
+
 export class GoogleDriveClient {
   private accessToken: string;
   private junpaFolderId: string | null = null;
@@ -23,7 +30,11 @@ export class GoogleDriveClient {
     this.accessToken = accessToken;
   }
 
-  private async fetch(url: string, options: RequestInit = {}): Promise<Response> {
+  private async fetch(
+    url: string,
+    options: RequestInit = {},
+    isRetry: boolean = false
+  ): Promise<Response> {
     const response = await fetch(url, {
       ...options,
       headers: {
@@ -31,6 +42,25 @@ export class GoogleDriveClient {
         ...options.headers,
       },
     });
+
+    if (response.status === 401 && !isRetry) {
+      // Attempt to get a fresh session token
+      try {
+        const sessionResponse = await fetch("/api/auth/session");
+        const sessionData = await sessionResponse.json();
+        if (sessionData?.accessToken) {
+          this.accessToken = sessionData.accessToken;
+          return this.fetch(url, options, true);
+        }
+      } catch {
+        // Fall through to throw SessionExpiredError
+      }
+      throw new SessionExpiredError();
+    }
+
+    if (response.status === 401 && isRetry) {
+      throw new SessionExpiredError();
+    }
 
     if (!response.ok) {
       const error = await response.text();
