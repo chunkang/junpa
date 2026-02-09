@@ -1,12 +1,20 @@
 import { auth, signIn } from "@/lib/auth";
 import { redirect } from "next/navigation";
+import { getAuthErrorMessage } from "@/lib/auth-errors";
 
-export default async function LoginPage() {
+interface LoginPageProps {
+  searchParams: Promise<{ error?: string }>;
+}
+
+export default async function LoginPage({ searchParams }: LoginPageProps) {
   const session = await auth();
 
   if (session) {
     redirect("/dashboard");
   }
+
+  const { error } = await searchParams;
+  const errorMessage = error ? getAuthErrorMessage(error) : null;
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-900 to-slate-800">
@@ -18,6 +26,12 @@ export default async function LoginPage() {
               Sign in to manage your streaming content
             </p>
           </div>
+
+          {errorMessage && (
+            <div className="bg-red-50 border border-red-200 text-red-700 rounded-lg p-3 mb-4 text-sm">
+              {errorMessage}
+            </div>
+          )}
 
           <form
             action={async () => {
