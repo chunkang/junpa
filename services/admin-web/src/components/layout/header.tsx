@@ -10,6 +10,15 @@ interface HeaderProps {
 }
 
 export function Header({ user }: HeaderProps) {
+  const handleSignOut = async () => {
+    try {
+      await fetch("/api/auth/signout", { method: "POST" });
+    } catch {
+      // Proceed with sign-out even if revocation fails
+    }
+    signOut({ callbackUrl: "/login" });
+  };
+
   return (
     <header className="sticky top-0 z-40 bg-white border-b border-slate-200">
       <div className="flex h-16 items-center justify-between px-6">
@@ -40,7 +49,7 @@ export function Header({ user }: HeaderProps) {
           </div>
 
           <button
-            onClick={() => signOut({ callbackUrl: "/login" })}
+            onClick={handleSignOut}
             className="p-2 text-slate-500 hover:text-slate-700 hover:bg-slate-100 rounded-lg transition-colors"
             title="Sign out"
           >
